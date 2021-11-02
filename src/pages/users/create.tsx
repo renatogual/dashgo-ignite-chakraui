@@ -1,7 +1,8 @@
 import { Box, Flex, Heading, Divider, VStack, SimpleGrid, HStack, Button } from '@chakra-ui/react'
 import React from 'react'
-import { Input } from '../../components/Form/Input'
+import Link from 'next/link'
 
+import { Input } from '../../components/Form/Input'
 import { Header } from '../../components/Header'
 import { Sidebar } from '../../components/Sidebar'
 
@@ -32,7 +33,9 @@ export default function CreateUser() {
 
           <Flex mt="8" justify="flex-end">
             <HStack>
-              <Button colorScheme="whiteAlpha">Cancelar</Button>
+              <Link href="/users" passHref>
+                <Button as="a" colorScheme="whiteAlpha">Cancelar</Button>
+              </Link>
               <Button colorScheme="pink">Salvar</Button>
             </HStack>
           </Flex>
