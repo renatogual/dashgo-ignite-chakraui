@@ -12,7 +12,7 @@ import React from "react";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 
 import { Input } from "../../components/Form/Input";
 import { Header } from "../../components/Header";
