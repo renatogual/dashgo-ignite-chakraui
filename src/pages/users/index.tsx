@@ -1,20 +1,32 @@
 import {
-  Box, Flex, Heading, Text, Button, Icon, Table, Thead, Tr, Th,
-  Checkbox, Tbody, Td, Spinner
-} from '@chakra-ui/react'
-import React, { useState } from 'react'
-import { RiAddLine } from 'react-icons/ri'
-import Link from 'next/link'
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Button,
+  Icon,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Checkbox,
+  Tbody,
+  Td,
+  Spinner,
+} from "@chakra-ui/react";
+import React, { useState } from "react";
+import { RiAddLine } from "react-icons/ri";
+import Link from "next/link";
 
-import { useUsers } from '../../services/hooks/useUsers'
+import { useUsers } from "../../services/hooks/useUsers";
 
-import { Header } from '../../components/Header'
-import { Pagination } from '../../components/Pagination'
-import { Sidebar } from '../../components/Sidebar'
+import { Header } from "../../components/Header";
+import { Pagination } from "../../components/Pagination";
+import { Sidebar } from "../../components/Sidebar";
 
 export default function UserList() {
-  const [page, setPage] = useState(1)
-  const { data, isLoading, error, isFetching } = useUsers(page)
+  const [page, setPage] = useState(1);
+  const { data, isLoading, error, isFetching } = useUsers(page);
 
   return (
     <Box>
@@ -27,8 +39,9 @@ export default function UserList() {
           <Flex mb="8" justify="space-between" align="center">
             <Heading size="lg" fontWeight="normal">
               Usuários
-
-              {!isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4" />}
+              {!isLoading && isFetching && (
+                <Spinner size="sm" color="gray.500" ml="4" />
+              )}
             </Heading>
 
             <Link href="/users/create" passHref>
@@ -60,17 +73,13 @@ export default function UserList() {
                     <Th px="6" color="gray.300" w="8">
                       <Checkbox colorScheme="pink" />
                     </Th>
-                    <Th>
-                      Usuário
-                    </Th>
-                    <Th>
-                      Data de cadastro
-                    </Th>
+                    <Th>Usuário</Th>
+                    <Th>Data de cadastro</Th>
                   </Tr>
                 </Thead>
 
                 <Tbody>
-                  {data.users.map(user => (
+                  {data.users.map((user) => (
                     <Tr key={user.id}>
                       <Td px="6">
                         <Checkbox colorScheme="pink" />
@@ -78,7 +87,9 @@ export default function UserList() {
                       <Td>
                         <Box>
                           <Text fontWeight="bold">{user.name}</Text>
-                          <Text fontSize="sm" color="gray.300">{user.email}</Text>
+                          <Text fontSize="sm" color="gray.300">
+                            {user.email}
+                          </Text>
                         </Box>
                       </Td>
                       <Td>{user.createdAt}</Td>
@@ -94,8 +105,8 @@ export default function UserList() {
               />
             </>
           )}
-        </Box >
-      </Flex >
-    </Box >
-  )
+        </Box>
+      </Flex>
+    </Box>
+  );
 }
