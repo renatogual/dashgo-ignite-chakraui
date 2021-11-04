@@ -2,7 +2,7 @@ import {
   Box, Flex, Heading, Text, Button, Icon, Table, Thead, Tr, Th,
   Checkbox, Tbody, Td, Spinner
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { RiAddLine } from 'react-icons/ri'
 import Link from 'next/link'
 
@@ -13,7 +13,8 @@ import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 
 export default function UserList() {
-  const { data, isLoading, error, isFetching } = useUsers()
+  const [page, setPage] = useState(1)
+  const { data, isLoading, error, isFetching } = useUsers(page)
 
   return (
     <Box>
@@ -69,7 +70,7 @@ export default function UserList() {
                 </Thead>
 
                 <Tbody>
-                  {data.map(user => (
+                  {data.users.map(user => (
                     <Tr key={user.id}>
                       <Td px="6">
                         <Checkbox colorScheme="pink" />
@@ -86,7 +87,11 @@ export default function UserList() {
                 </Tbody>
               </Table>
 
-              <Pagination />
+              <Pagination
+                totalCountOfRegisters={data.totalCount}
+                currentPage={page}
+                onPageChange={setPage}
+              />
             </>
           )}
         </Box >
